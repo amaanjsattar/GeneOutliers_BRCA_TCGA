@@ -1,8 +1,8 @@
 ### CONTINGENCY TABLES AND STATISTICAL ANALYSIS ####################################################
 # RESULTS LOG: her2.stats, histgrade.spearman
 
-source('~/Desktop/BIGSUMMER.PROJ/META.KM.SUBTYPES.R');
-source('~/Desktop/BIGSUMMER.PROJ/META.KM.OUTLIERS.R');
+source('~/Desktop/BIGSUMMER.PROJ/Scripts/META.KM.SUBTYPES.R');
+source('~/Desktop/BIGSUMMER.PROJ/Scripts/META.KM.OUTLIERS.R');
 # install.packages('vcd');
 library(DescTools)
 library(vcd);
@@ -124,37 +124,26 @@ chisq.test(histgrade.cont)
 
 tbl.subset <- meta.clinic.sample.merged[, c('HER2.Status',
                                             'Neoplasm.Histologic.Grade',
-                                            'Oncotree.Code', 'PR.Status',
-                                            'Tumor.Stage', 'Outliers', 
-                                            'ER.Status', 
-                                            'Cancer.Type.Detailed',
+                                            'PR.Status',
+                                            'Outliers', 
+                                            'ER.Status',
                                             'Cellularity',
-                                            'Pam50...Claudin.low.subtype',
-                                            'Overall.Survival.Status',
-                                            'X3.Gene.classifier.subtype',
-                                            'Patient.s.Vital.Status',
-                                            'Primary.Tumor.Laterality',
-                                            'Tumor.Other.Histologic.Subtype',
-                                            'Relapse.Free.Status'
+                                            'Patient.s.Vital.Status'
                                             )]
 
 
 tbl.subset[tbl.subset == ''] <- NA
 
 # Create the summary table with the 'PBS' level excluded
-summary_table <- tbl_summary(tbl.subset,
+summary_table_ <- tbl_summary(tbl.subset,
                              by = Outliers,
                              missing = 'no',
                              label = list(HER2.Status ~ 'HER2 Status',
                                           Neoplasm.Histologic.Grade ~ 'Neoplasm Histologic Grade',
-                                          Oncotree.Code ~ 'Oncotree Code',
                                           PR.Status ~ 'Progesterone Receptor Status',
-                                          Tumor.Stage ~ 'Tumor Stage',
                                           ER.Status ~ 'Estrogen Receptor Status',
-                                          Cancer.Type.Detailed ~ 'Histologic Subtype',
-                                          Pam50...Claudin.low.subtype ~ 'PAM50 Molecular Subtype',
-                                          Overall.Survival.Status ~ 'Overall Survival Status',
-                                          Relapse.Free.Status ~ 'Relapse.Free.Status'
+                                          Cellularity ~ 'Cellularity',
+                                          Patient.s.Vital.Status ~ 'Patient Vital Status'
                                           )
 );
 
@@ -167,8 +156,45 @@ summary_table <- italicize_labels(summary_table)
 # Display the modified summary table
 summary_table
 
+theme_gtsummary_journal(journal = "jama")
+her2.subset <- tbl.subset[, c('Outliers', 'HER2.Status')]
+summary_HER2 <- tbl_summary(her2.subset,
+                            by = Outliers,
+                            missing = 'no',
+                            label = list(HER2.Status ~ 'HER2 Status'),
+                            )
+summary_HER2 <- modify_caption(summary_HER2, '**HER2 Status by Outlier Gene Count**')
+bold_labels(summary_HER2)
+add_p(summary_HER2)
 
-head(her2.subset)
+er.subset <- tbl.subset[, c('Outliers', 'ER.Status')]
+summary_ER <- tbl_summary(er.subset,
+                            by = Outliers,
+                            missing = 'no',
+                            label = list(ER.Status ~ 'ER Status'),
+)
+summary_ER <- modify_caption(summary_ER, '**ER Status by Outlier Gene Count**')
+bold_labels(summary_ER)
+add_p(summary_ER)
+
+pr.subset <- tbl.subset[, c('Outliers', 'PR.Status')]
+summary_PR <- tbl_summary(pr.subset,
+                          by = Outliers,
+                          missing = 'no',
+                          label = list(PR.Status ~ 'PR Status'),
+)
+summary_PR <- modify_caption(summary_PR, '**PR Status by Outlier Gene Count**')
+bold_labels(summary_PR)
+add_p(summary_PR)
+
+
+
+
+
+
+
+
+
 
 # Custom function to calculate Cramer's V for the entire contingency table
 my_cramer_v <- function(data, variable, by, ...) {

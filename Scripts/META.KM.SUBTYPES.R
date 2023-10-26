@@ -7,7 +7,7 @@
 
 # Read in the data 
 load("/Users/amaanjsattar/Desktop/2023-07-07_Metabric_Outlier.rda");
-source('/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/TCGA.FUNCTIONS.R');
+source('/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/Scripts/TCGA.FUNCTIONS.R');
 # Install dependencies (devtools, deldir).
 library(devtools);
 
@@ -144,9 +144,9 @@ Subtype.KM.Grouped <- BoutrosLab.plotting.survival::create.km.plot(
     top.padding = 5,
     left.padding = 15,
     key.stats.cex = 1,
-    key.stats.corner = c(1, -35),
+    key.stats.corner = c(1, -34),
     statistical.method = 'logrank',
-    filename = '/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/META.KM.OS.SUBTYPES.pdf'
+    filename = '/Users/amaanjsattar/Desktop/META.KM.OS.SUBTYPES.png'
 );
 
 ####################################################################################################

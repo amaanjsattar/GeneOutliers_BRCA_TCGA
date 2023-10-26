@@ -259,7 +259,7 @@ subtype.km.grouped <- function(
 BoutrosLab.plotting.survival::create.km.plot(
     height = 12,
     width = 12,
-    filename = '/Users/amaanjsattar/Desktop/TCGA.KM.OS.SUBTYPES.pdf',
+    filename = '/Users/amaanjsattar/Desktop/TCGA.KM.OS.SUBTYPES.png',
     survival.object = tcga.surv,
     patient.groups = tcga.subtypes,
     statistical.method = 'logrank',
@@ -278,7 +278,7 @@ BoutrosLab.plotting.survival::create.km.plot(
     left.padding = 20,
     resolution = 300,
     key.stats.cex = 1,
-    key.stats.corner = c(1, -50),
+    key.stats.corner = c(1, -53),
     key.groups.corner = c(-0.2, 0)
 )
 
@@ -495,7 +495,7 @@ outlier.groups <- factor(tcga.merged$Outliers,
 BoutrosLab.plotting.survival::create.km.plot(
     height = 12,
     width = 12,
-    filename = '/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/Plots/TCGA.KM.OS.OUTLIERS.pdf',
+    filename = '/Users/amaanjsattar/Desktop/TCGA.KM.OS.OUTLIERS.png',
     survival.object = tcga.outlier.os.surv,
     patient.groups = outlier.groups,
     statistical.method = 'logrank',
@@ -517,7 +517,7 @@ BoutrosLab.plotting.survival::create.km.plot(
     risk.label.pos = -40,
     resolution = 400,
     key.stats.cex = 1.2,
-    key.stats.corner = c(1, -45)
+    key.stats.corner = c(1, -46)
     );
     
 ####################################################################################################

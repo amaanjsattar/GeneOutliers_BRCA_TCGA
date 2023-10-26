@@ -9,7 +9,7 @@ library(BoutrosLab.statistics.survival);
 library(BoutrosLab.plotting.survival);
 
 # Load necessary functions
-source('/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/TCGA.FUNCTIONS.R')
+source('/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/Scripts/TCGA.FUNCTIONS.R')
 
 # Load the RDA file
 load("/Users/amaanjsattar/Desktop/2023-07-07_Metabric_Outlier.rda");
@@ -110,7 +110,7 @@ km.outliers.meta <- subtype.km.grouped(merged.data.surv,
 BoutrosLab.plotting.survival::create.km.plot(
     height = 12,
     width = 12,
-    filename = '/Users/amaanjsattar/Desktop/BIGSUMMER.PROJ/Plots/META.KM.OS.OUTLIERS.pdf',
+    filename = '/Users/amaanjsattar/Desktop/META.KM.OS.OUTLIERS.png',
     survival.object = merged.data.surv,
     patient.groups = outlier.groups,
     statistical.method = 'logrank',
@@ -132,7 +132,7 @@ BoutrosLab.plotting.survival::create.km.plot(
     risk.label.pos = -40,
     resolution = 400,
     key.stats.cex = 1.2,
-    key.stats.corner = c(1, -45)
+    key.stats.corner = c(1, -44)
 );
 
 ####################################################################################################
